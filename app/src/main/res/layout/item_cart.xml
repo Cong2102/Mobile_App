@@ -1,0 +1,101 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_marginBottom="8dp"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="4dp"
+    android:layout_marginHorizontal="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/jacket1"
+            android:background="@drawable/image_border" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên sản phẩm"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giá: 100.000 VNĐ"
+                android:textColor="#FF5722"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp" />
+
+            <!-- Tăng giảm số lượng -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btn_decrease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:text="−"
+                    android:backgroundTint="@color/your_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                <TextView
+                    android:id="@+id/txt_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:text="1"
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/btn_increase"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="+"
+                    android:textSize="18sp"
+                    android:backgroundTint="#DDDDDD" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xoá"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#F44336"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
