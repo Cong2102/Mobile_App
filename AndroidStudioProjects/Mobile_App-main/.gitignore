@@ -1,38 +1,28 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
-# Ignore system paths accidentally picked up
-../../*
+# Bỏ qua mọi thứ bên ngoài thư mục dự án
 ../*
+../../*
 
-# Ignore typical user folders
+# Loại các file không cần thiết
 *.rar
-*.log
 *.py
+*.log
+*.tmp
+*.ini
 *.dat
 *.regtrans-ms
 *.blf
-*.ini
 
-# Ignore folders
-.AppData/
-.Desktop/
-.Documents/
-.Downloads/
-.Music/
-.Pictures/
-.Videos/
-.Saved Games/
-.OneDrive/
+# Bỏ các thư mục hệ thống và user
+.DS_Store
+node_modules/
+build/
+.idea/
+.gradle/
+AppData/
+OneDrive/
+Downloads/
+Desktop/
+Documents/
+Music/
+Videos/
+Saved Games/
