@@ -13,3 +13,26 @@
 .externalNativeBuild
 .cxx
 local.properties
+# Ignore system paths accidentally picked up
+../../*
+../*
+
+# Ignore typical user folders
+*.rar
+*.log
+*.py
+*.dat
+*.regtrans-ms
+*.blf
+*.ini
+
+# Ignore folders
+.AppData/
+.Desktop/
+.Documents/
+.Downloads/
+.Music/
+.Pictures/
+.Videos/
+.Saved Games/
+.OneDrive/
