@@ -69,19 +69,22 @@ public class ProductDetailActivity extends AppCompatActivity {
         txtPrice.setText(priceStr);
 
         // Thêm vào giỏ hàng
+        // Thêm vào giỏ hàng
         btnAddToCart.setOnClickListener(v -> {
-            CartItem item = new CartItem(product.getImageResId(), product.getName(), String.valueOf(product.getPrice()));
+            // Truyền giá dưới dạng int
+            CartItem item = new CartItem(product.getImageResId(), product.getName(), product.getPrice());
             CartManager.addToCart(this, item);
             Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
         });
 
-        // Mua ngay
+// Mua ngay
         btnBuyNow.setOnClickListener(v -> {
-            CartItem item = new CartItem(product.getImageResId(), product.getName(), String.valueOf(product.getPrice()));
+            CartItem item = new CartItem(product.getImageResId(), product.getName(), product.getPrice());
             CartManager.addToCart(this, item);
             Toast.makeText(this, "Thêm vào giỏ & chuyển tới thanh toán", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, CartActivity.class));
         });
+
 
         // Danh sách sản phẩm liên quan
         List<Product> relatedProducts = new ArrayList<>();

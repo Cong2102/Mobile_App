@@ -18,10 +18,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private Context context;
     private List<Product> productList;
 
-    public ProductAdapter(Context context, List<Product> products) {
+    public ProductAdapter(Context context, List<Product> productList) {
         this.context = context;
-        this.productList = products;
+        this.productList = productList; // ✅ đúng rồi
     }
+
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

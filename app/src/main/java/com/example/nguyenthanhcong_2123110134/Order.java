@@ -1,22 +1,53 @@
 package com.example.nguyenthanhcong_2123110134;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
     private String orderId;
-    private List<CartItem> items;
+    private List<CartItem> products;
     private String date;
-    private int totalAmount;
+    private int total;
 
-    public Order(String orderId, List<CartItem> items, String date, int totalAmount) {
+    // Constructor, getters, setters, etc.
+    public Order(String orderId, List<CartItem> products, String date, int total) {
         this.orderId = orderId;
-        this.items = items;
+        this.products = products;
         this.date = date;
-        this.totalAmount = totalAmount;
+        this.total = total;
     }
 
-    public String getOrderId() { return orderId; }
-    public List<CartItem> getItems() { return items; }
-    public String getDate() { return date; }
-    public int getTotalAmount() { return totalAmount; }
+    // Getters and Setters
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public List<CartItem> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<CartItem> products) {
+        this.products = products;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 }

@@ -1,16 +1,12 @@
 package com.example.nguyenthanhcong_2123110134;
-import android.content.Context;
-import android.widget.Button;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.nguyenthanhcong_2123110134.R;
 
 import java.util.List;
 
@@ -18,7 +14,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     private List<CartItem> cartItems;
     private Context context;
-    private TextView txtTotalPrice;
+    private TextView txtTotalPrice; // Tham chiếu tới TextView tổng tiền
 
     public CartAdapter(Context context, List<CartItem> cartItems, TextView txtTotalPrice) {
         this.context = context;
@@ -26,39 +22,51 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         this.txtTotalPrice = txtTotalPrice;
     }
 
-    @NonNull
     @Override
-    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CartViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_cart, parent, false);
         return new CartViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
+    public void onBindViewHolder(CartViewHolder holder, int position) {
         CartItem item = cartItems.get(position);
-        holder.imgProduct.setImageResource(item.getImage());
-        holder.txtName.setText(item.getName());
-        holder.txtPrice.setText(item.getPrice());
-        holder.txtQuantity.setText(String.valueOf(item.getQuantity()));
+        holder.productName.setText(item.getProductName());
+        holder.productPrice.setText(item.getPrice() + " VNĐ");
+        holder.productQuantity.setText(String.valueOf(item.getQuantity()));
 
+        // Tăng số lượng
         holder.btnIncrease.setOnClickListener(v -> {
-            item.increaseQuantity();
-            notifyItemChanged(position);
-            updateTotal();
+            item.setQuantity(item.getQuantity() + 1);
+            notifyItemChanged(position);  // Cập nhật item hiện tại
+            updateTotalPrice(); // Cập nhật lại tổng tiền
         });
 
+        // Giảm số lượng
         holder.btnDecrease.setOnClickListener(v -> {
-            item.decreaseQuantity();
-            notifyItemChanged(position);
-            updateTotal();
+            if (item.getQuantity() > 1) {
+                item.setQuantity(item.getQuantity() - 1);
+                notifyItemChanged(position);  // Cập nhật item hiện tại
+                updateTotalPrice(); // Cập nhật lại tổng tiền
+            }
         });
 
+        // Xóa sản phẩm
         holder.btnRemove.setOnClickListener(v -> {
-            cartItems.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, cartItems.size()); // Cập nhật lại danh sách
-            CartManager.setCart(context, cartItems); // Cập nhật dữ liệu giỏ hàng
-            updateTotal();
+            // Xóa sản phẩm khỏi giỏ hàng
+            CartManager.removeFromCart(context, item);  // Xóa sản phẩm từ SharedPreferences
+
+            // Xóa sản phẩm khỏi danh sách của RecyclerView
+            // Xóa sản phẩm trong giỏ hàng
+            cartItems.remove(position); // Xóa sản phẩm khỏi danh sách giỏ hàng
+            notifyItemRemoved(position); // Cập nhật lại RecyclerView
+            // Cập nhật lại RecyclerView
+
+            // Cập nhật lại giỏ hàng trong SharedPreferences
+            CartManager.setCart(context, cartItems);
+
+            // Cập nhật tổng tiền
+            updateTotalPrice();
         });
 
     }
@@ -68,30 +76,28 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return cartItems.size();
     }
 
-    private void updateTotal() {
+    // Hàm cập nhật tổng tiền
+    private void updateTotalPrice() {
         int total = 0;
         for (CartItem item : cartItems) {
-            total += item.getTotalPrice();
+            total += item.getTotalPrice();  // Tính tổng tiền của tất cả các sản phẩm trong giỏ
         }
+        // Cập nhật tổng tiền vào TextView trong CartActivity
         txtTotalPrice.setText("Tổng tiền: " + total + " VNĐ");
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgProduct;
-        TextView txtName, txtPrice, txtQuantity;
+        TextView productName, productPrice, productQuantity;
         Button btnIncrease, btnDecrease, btnRemove;
 
-        public CartViewHolder(@NonNull View itemView) {
+        public CartViewHolder(View itemView) {
             super(itemView);
-            imgProduct = itemView.findViewById(R.id.img_product);
-            txtName = itemView.findViewById(R.id.txt_name);
-            txtPrice = itemView.findViewById(R.id.txt_price);
-            txtQuantity = itemView.findViewById(R.id.txt_quantity);
+            productName = itemView.findViewById(R.id.product_name);
+            productPrice = itemView.findViewById(R.id.product_price);
+            productQuantity = itemView.findViewById(R.id.product_quantity);
             btnIncrease = itemView.findViewById(R.id.btn_increase);
             btnDecrease = itemView.findViewById(R.id.btn_decrease);
             btnRemove = itemView.findViewById(R.id.btn_remove);
         }
     }
 }
-
-

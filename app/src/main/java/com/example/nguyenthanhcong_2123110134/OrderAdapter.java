@@ -14,42 +14,40 @@ import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
-    private List<Order> orders;
-    private Context context;
+    private List<OrderItem> orderItems;
 
-    public OrderAdapter(Context context, List<Order> orders) {
-        this.context = context;
-        this.orders = orders;
+    public OrderAdapter(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_order, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
         return new OrderViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-        Order order = orders.get(position);
-        holder.txtOrderId.setText("Mã đơn: " + order.getOrderId());
-        holder.txtDate.setText("Ngày: " + order.getDate());
-        holder.txtTotal.setText("Tổng: " + order.getTotalAmount() + " VNĐ");
+        OrderItem item = orderItems.get(position);
+        holder.productName.setText(item.getProductName());
+        holder.productPrice.setText("Giá: " + item.getPrice() + " VNĐ");
+        holder.productQuantity.setText("Số lượng: " + item.getQuantity());
     }
 
     @Override
     public int getItemCount() {
-        return orders.size();
+        return orderItems.size();
     }
 
-    static class OrderViewHolder extends RecyclerView.ViewHolder {
-        TextView txtOrderId, txtDate, txtTotal;
+    public static class OrderViewHolder extends RecyclerView.ViewHolder {
+        TextView productName, productPrice, productQuantity;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtOrderId = itemView.findViewById(R.id.txt_order_id);
-            txtDate = itemView.findViewById(R.id.txt_order_date);
-            txtTotal = itemView.findViewById(R.id.txt_order_total);
+            productName = itemView.findViewById(R.id.product_name);
+            productPrice = itemView.findViewById(R.id.product_price);
+            productQuantity = itemView.findViewById(R.id.product_quantity);
         }
     }
 }

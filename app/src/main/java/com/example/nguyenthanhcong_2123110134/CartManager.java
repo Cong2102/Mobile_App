@@ -1,13 +1,13 @@
 package com.example.nguyenthanhcong_2123110134;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import java.util.ArrayList;
 
+import com.example.nguyenthanhcong_2123110134.CartItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartManager {
@@ -33,21 +33,60 @@ public class CartManager {
         }
         return new ArrayList<>();
     }
+
+    // Thêm sản phẩm vào giỏ hàng
     public static void addToCart(Context context, CartItem newItem) {
         List<CartItem> cart = getCart(context);
 
-        // Nếu sản phẩm đã có, tăng số lượng
+        // Kiểm tra sản phẩm đã có trong giỏ hàng hay chưa
+        boolean productExists = false;
+
         for (CartItem item : cart) {
-            if (item.getName().equals(newItem.getName())) {
-                item.increaseQuantity();
-                setCart(context, cart);
-                return;
+            // Kiểm tra nếu sản phẩm đã có trong giỏ hàng (so sánh theo tên và giá)
+            if (item.getProductName().equals(newItem.getProductName()) && item.getPrice() == newItem.getPrice()) {
+                item.increaseQuantity();  // Tăng số lượng nếu sản phẩm đã có
+                productExists = true;
+                break;  // Dừng vòng lặp khi tìm thấy sản phẩm
             }
         }
 
-        // Nếu chưa có, thêm mới
-        cart.add(newItem);
+        // Nếu sản phẩm chưa có trong giỏ, thêm mới sản phẩm
+        if (!productExists) {
+            cart.add(newItem);
+        }
+
+        // Lưu giỏ hàng vào SharedPreferences
         setCart(context, cart);
     }
 
+    // Xóa sản phẩm khỏi giỏ hàng
+
+    public static void removeFromCart(Context context, CartItem itemToRemove) {
+        List<CartItem> cart = getCart(context);  // Lấy giỏ hàng hiện tại
+
+        for (CartItem item : cart) {
+            // Nếu sản phẩm trong giỏ trùng với sản phẩm cần xóa
+            if (item.getProductName().equals(itemToRemove.getProductName())) {
+                cart.remove(item);  // Xóa sản phẩm khỏi giỏ
+                break;  // Dừng vòng lặp sau khi xóa sản phẩm
+            }
+        }
+
+        // Lưu giỏ hàng đã thay đổi vào SharedPreferences
+        setCart(context, cart);
+    }
+
+
+    // Cập nhật số lượng sản phẩm trong giỏ
+    public static void updateQuantity(Context context, CartItem item, int newQuantity) {
+        List<CartItem> cart = getCart(context);
+
+        for (CartItem cartItem : cart) {
+            if (cartItem.getProductName().equals(item.getProductName())) {
+                cartItem.setQuantity(newQuantity); // Cập nhật số lượng
+                setCart(context, cart); // Lưu lại giỏ hàng sau khi thay đổi
+                return;
+            }
+        }
+    }
 }

@@ -1,12 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/tools"
     android:layout_marginBottom="8dp"
-    card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="4dp"
-    android:layout_marginHorizontal="12dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,14 +14,16 @@
         android:padding="12dp"
         android:gravity="center_vertical">
 
+        <!-- Ảnh sản phẩm -->
         <ImageView
             android:id="@+id/img_product"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/jacket1"
+            android:src="@drawable/blazer"
             android:background="@drawable/image_border" />
 
+        <!-- Thông tin sản phẩm -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -31,7 +32,7 @@
             android:layout_marginStart="12dp">
 
             <TextView
-                android:id="@+id/txt_name"
+                android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tên sản phẩm"
@@ -40,7 +41,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/txt_price"
+                android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Giá: 100.000 VNĐ"
@@ -64,13 +65,11 @@
                     android:minHeight="48dp"
                     android:padding="12dp"
                     android:text="−"
-                    android:backgroundTint="@color/your_color"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
+                    android:textSize="18sp"
+                    android:backgroundTint="#DDDDDD" />
 
                 <TextView
-                    android:id="@+id/txt_quantity"
+                    android:id="@+id/product_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="12dp"
@@ -80,14 +79,18 @@
 
                 <Button
                     android:id="@+id/btn_increase"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
                     android:text="+"
                     android:textSize="18sp"
                     android:backgroundTint="#DDDDDD" />
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Nút xóa sản phẩm -->
         <Button
             android:id="@+id/btn_remove"
             android:layout_width="wrap_content"

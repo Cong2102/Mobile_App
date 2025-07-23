@@ -1,36 +1,47 @@
 package com.example.nguyenthanhcong_2123110134;
 
 public class CartItem {
-    private int image;
-    private String name;
-    private String price; // dạng "100000"
-    private int quantity;
+    private int imageResId;  // ID hình ảnh sản phẩm
+    private String productName;     // Tên sản phẩm
+    private int price;       // Giá sản phẩm
+    private int quantity;    // Số lượng sản phẩm
 
-    public CartItem(int image, String name, String price) {
-        this.image = image;
-        this.name = name;
+    // Constructor
+    public CartItem(int imageResId, String productName, int price) {
+        this.imageResId = imageResId;
+        this.productName = productName;
         this.price = price;
-        this.quantity = 1;
+        this.quantity = 1;  // Mặc định số lượng là 1
     }
 
-    public int getImage() { return image; }
-    public String getName() { return name; }
-    public String getPrice() { return price; }
-    public int getQuantity() { return quantity; }
+    // Getter và Setter cho các thuộc tính
+    public int getImageResId() {
+        return imageResId;
+    }
 
-    public void increaseQuantity() { quantity++; }
-    public void decreaseQuantity() {
-        if (quantity > 0) quantity--;
+    public String getProductName() {
+        return productName;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void increaseQuantity() {
+        this.quantity++;
     }
 
     public int getTotalPrice() {
-        try {
-            return Integer.parseInt(price.replaceAll("[^0-9]", "")) * quantity;
-        } catch (Exception e) {
-            return 0;
-        }
+        return price * quantity;  // Tính tổng giá sản phẩm
     }
 }
-
 
 

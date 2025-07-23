@@ -14,7 +14,7 @@ public class MyOrderActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_order);
+        setContentView(R.layout.activity_order);
         setTitle("Đơn hàng của tôi");
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
