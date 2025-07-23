@@ -90,6 +90,21 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_product" />
 
+
+        <!-- Recommended For You -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommended For You"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#212121"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp" />
+
+
+
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 

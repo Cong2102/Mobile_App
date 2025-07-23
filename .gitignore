@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.iml
 .gradle
 /local.properties
@@ -13,3 +14,33 @@
 .externalNativeBuild
 .cxx
 local.properties
+=======
+# Bỏ qua mọi thứ bên ngoài thư mục dự án
+../*
+../../*
+
+# Loại các file không cần thiết
+*.rar
+*.py
+*.log
+*.tmp
+*.ini
+*.dat
+*.regtrans-ms
+*.blf
+
+# Bỏ các thư mục hệ thống và user
+.DS_Store
+node_modules/
+build/
+.idea/
+.gradle/
+AppData/
+OneDrive/
+Downloads/
+Desktop/
+Documents/
+Music/
+Videos/
+Saved Games/
+>>>>>>> 84adffd (báo cáo)

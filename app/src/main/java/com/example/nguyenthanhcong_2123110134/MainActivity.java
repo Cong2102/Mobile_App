@@ -68,15 +68,25 @@ public class MainActivity extends AppCompatActivity {
         productList = new ArrayList<>();
 
         productList.add(new Product(R.drawable.jacket1, "Casual Denim Set", 250000, "⭐ 4.6  ", "Adidas", "Bộ denim thoải mái phù hợp đi chơi, dạo phố"));
+
         productList.add(new Product(R.drawable.blazer, "Elegant Black Blazer", 320000,"⭐ 4.2", "Adidas",  "Blazer đen thanh lịch, phù hợp đi làm và sự kiện"));
         productList.add(new Product(R.drawable.blazer, "Business Blazer", 30000,"⭐ 4.3"   , "Zara","Blazer công sở phong cách trẻ trung"));
         productList.add(new Product(R.drawable.jacket1, "Cool Jacket", 4000000,"⭐ 4.8"   ,"Puma","Áo khoác cá tính cho mùa đông, chất liệu cao cấp"));
+
+        productList.add(new Product(R.drawable.jacket3, "Elegant Black Blazer", 320000,"⭐ 4.2", "Adidas",  "Blazer đen thanh lịch, phù hợp đi làm và sự kiện"));
+        productList.add(new Product(R.drawable.businessblazer, "Business Blazer", 30000,"⭐ 4.3"   , "Zara","Blazer công sở phong cách trẻ trung"));
+        productList.add(new Product(R.drawable.jacket2, "Cool Jacket", 4000000,"⭐ 4.8"   ,"Puma","Áo khoác cá tính cho mùa đông, chất liệu cao cấp"));
+
 // thêm các sản phẩm khác...
 
 
         productAdapter = new ProductAdapter(this, productList);
         recyclerProduct.setAdapter(productAdapter);
         recyclerProduct.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+
+
+
 
         BottomNavigationView nav = findViewById(R.id.bottom_navigation);
 
